@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:task/constants/routes.dart';
 import 'package:task/data/models/response/image_response.dart';
-import 'package:task/presentation/pages/details/image_details_page.dart';
 import 'package:task/presentation/pages/home/home_page.dart';
+import 'package:task/presentation/pages/image_details/image_details_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -15,9 +15,23 @@ class AppRouter {
           builder: (_) => const HomePage(),
         );
       case Routes.imageDetails:
-        return MaterialPageRoute(
-          builder: (_) => ImageDetailsPage(
-              imageResponse: settings.arguments as ImageResponse),
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              ImageDetailsPage(
+                  imageResponse: settings.arguments as ImageResponse),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
         );
       default:
         return MaterialPageRoute(
@@ -26,3 +40,21 @@ class AppRouter {
     }
   }
 }
+// ImageDetailsPage(
+//               imageResponse: settings.arguments as ImageResponse)
+
+//   return PageRouteBuilder(
+//     pageBuilder: (context, animation, secondaryAnimation) => const Page2(),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       const begin = Offset(1.0, 0.0);
+//       const end = Offset.zero;
+//       const curve = Curves.ease;
+
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+//       return SlideTransition(
+//         position: animation.drive(tween),
+//         child: child,
+//       );
+//     },
+//   );

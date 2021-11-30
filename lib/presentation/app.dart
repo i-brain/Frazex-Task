@@ -20,8 +20,10 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blueGrey,
-          ),
+              primarySwatch: Colors.blueGrey,
+              appBarTheme: const AppBarTheme(
+                centerTitle: true,
+              )),
           onGenerateRoute: AppRouter.onGenerateRoute,
           initialRoute: Routes.home,
         ),
