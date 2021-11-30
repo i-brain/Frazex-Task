@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print(size);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pix Image'),
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 5 / (size.height * 0.01),
+                    childAspectRatio: size.width * 1.5 / size.height,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
                   ),

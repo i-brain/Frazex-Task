@@ -27,13 +27,18 @@ class ImageDetailsPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               child: Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: CachedNetworkImage(
-                      imageUrl: imageResponse.userImageUrl,
-                      errorWidget: (context, url, error) => Image.asset(
-                        Assets.images.avatar,
-                        fit: BoxFit.fill,
+                  CircleAvatar(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: CachedNetworkImage(
+                        imageUrl: imageResponse.userImageUrl,
+                        placeholder: (context, url) => const CircleAvatar(
+                          backgroundColor: Colors.grey,
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          Assets.images.avatar,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),

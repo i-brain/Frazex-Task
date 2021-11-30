@@ -21,6 +21,13 @@ class ImageCard extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: imageResponse.largeImageUrl,
           fit: BoxFit.fill,
+          placeholder: (context, url) => Container(
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(16),
+            ),
+          ),
         ),
       ),
     );
