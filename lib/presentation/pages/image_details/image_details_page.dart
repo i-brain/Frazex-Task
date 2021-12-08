@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task/constants/app_text_styles.dart';
 import 'package:task/constants/assets.dart';
-import 'package:task/data/models/response/image_response.dart';
+import 'package:task/data/data_sources/notification_data_source.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task/data/models/response/image_body.dart';
 
 class ImageDetailsPage extends StatelessWidget {
   const ImageDetailsPage({
@@ -15,9 +17,11 @@ class ImageDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Image Details'),
+        title: Text(locale.imageDetails),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,9 +68,12 @@ class ImageDetailsPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: const [
-                Icon(
-                  Icons.favorite_border,
-                  size: 30,
+                InkWell(
+                  onTap: NotificationDataSource.showNotification,
+                  child: Icon(
+                    Icons.favorite_border,
+                    size: 30,
+                  ),
                 ),
                 SizedBox(
                   width: 20,
@@ -92,8 +99,8 @@ class ImageDetailsPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: RichText(
               text: TextSpan(style: AppTextStyles.interW500, children: [
-                TextSpan(text: imageResponse.like.toString()),
-                const TextSpan(text: ' likes'),
+                TextSpan(text: imageResponse.like.toString() + ' '),
+                TextSpan(text: locale.likes),
               ]),
             ),
           ),
@@ -103,7 +110,7 @@ class ImageDetailsPage extends StatelessWidget {
               text: TextSpan(
                 style: AppTextStyles.interW500,
                 children: [
-                  const TextSpan(text: 'Tags : '),
+                  TextSpan(text: locale.tags + ' : '),
                   TextSpan(
                     text: imageResponse.tags,
                     style: const TextStyle(

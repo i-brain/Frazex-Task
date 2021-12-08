@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:task/constants/routes.dart';
-import 'package:task/data/models/response/image_response.dart';
+import 'package:task/data/models/response/image_body.dart';
 import 'package:task/presentation/pages/home/home_page.dart';
 import 'package:task/presentation/pages/image_details/image_details_page.dart';
 

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:task/constants/routes.dart';
-import 'package:task/data/models/response/image_response.dart';
+import 'package:task/data/models/response/image_body.dart';
 
 class ImageCard extends StatelessWidget {
   const ImageCard({
